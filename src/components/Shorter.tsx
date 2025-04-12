@@ -56,13 +56,13 @@ export default function Shorter() {
             <input
               type="text"
               placeholder="Shorten a link here..."
-              className="rounded-md p-4  w-full md:w-3/4 bg-white "
+              className={`rounded-md p-4 w-full md:w-3/4 bg-white ${error ? "border-2 border-red-500" : ""}`}
               onChange={(e) => setInput(e.target.value)}
               value={input}
             />
            
           <button
-            className="bg-[#2acfcf] p-4  rounded-md text-white font-bold"
+            className="bg-[#2acfcf] p-4 rounded-md text-white font-bold"
             onClick={getLink}
           >
             Shorten It!

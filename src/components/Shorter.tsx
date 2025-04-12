@@ -10,24 +10,13 @@ export default function Shorter() {
       shortLink: "https://short.ly/abc123",
       originalLink: "https://www.example.com",
     },
-    {
-      shortLink: "https://short.ly/def456",
-      originalLink: "https://www.example.com",
-    },
-    {
-      shortLink: "https://short.ly/ghi789",
-      originalLink: "https://www.example.com",
-    },
-    {
-      shortLink: "https://short.ly/jkl012",
-      originalLink: "https://www.example.com",
-    },
+   
   ]);
   const [error, setError] = useState<string>("");
 
   async function getLink() {
     const res = await fetch(
-      "https://cors-anywhere.herokuapp.com/https://cleanuri.com/api/v1/shorten",
+      "/https://cleanuri.com/api/v1/shorten",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

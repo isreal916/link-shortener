@@ -16,7 +16,7 @@ export default function Shorter() {
 
   async function getLink() {
     const res = await fetch(
-      "/https://cleanuri.com/api/v1/shorten",
+      "https://cleanuri.com/api/v1/shorten",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -6,31 +6,31 @@ interface LinkType extends Array<{ shortLink: string; originalLink: string }> {}
 export default function Shorter() {
   const [input, setInput] = useState<string>("");
   const [links, setLinks] = useState<LinkType>([
-    {
-      shortLink: "https://short.ly/abc123",
-      originalLink: "https://www.example.com",
-    },
+   
    
   ]);
   const [error, setError] = useState<string>("");
+const accessToken = import.meta.env.VITE_BITLY_ACCESS_TOKEN;
+
 
   async function getLink() {
     const res = await fetch(
-      "https://cleanuri.com/api/v1/shorten",
+      "https://api-ssl.bitly.com/v4/shorten",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" ,
-            "Access-Control-Allow-Origin":"https://link-shortener-five-jade.vercel.app"
+            'Authorization': `Bearer ${accessToken}`,
+            
 
         },
-        body: JSON.stringify({ url: input }),
+        body: JSON.stringify({ long_url: input }),
       }
     );
     const data = await res.json();
-    if (data && data.result_url) {
-      console.log(data.result_url);
+    if (data && data.link) {
+      console.log(data.link);
       setLinks((prevLinks) => [
-        { shortLink: data.result_url, originalLink: input },
+        { shortLink: data.link, originalLink: input },
         ...prevLinks,
       ]);
       setError("");
@@ -44,7 +44,7 @@ export default function Shorter() {
   return (
     <>
       <div className="bg-[url(/images/bg-boost-mobile.svg)] md:bg-[url(/images/bg-boost-desktop.svg)] bg-no-repeat  bg-center bg-darkViolet flex flex-col md:flex-col   gap-2 p-8 w-[90%] absolute top-[-55px] self-center">
-        <div className="flex flex-col md:flex-row gap-2 w-[90%] md:w-[100%]">
+        <div className="flex flex-col md:flex-row gap-2 w-[100%] md:w-[100%]">
             <input
               type="text"
               placeholder="Shorten a link here..."

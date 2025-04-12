@@ -19,7 +19,10 @@ export default function Shorter() {
       "https://cleanuri.com/api/v1/shorten",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" ,
+            "Access-Control-Allow-Origin":"https://link-shortener-five-jade.vercel.app"
+
+        },
         body: JSON.stringify({ url: input }),
       }
     );
